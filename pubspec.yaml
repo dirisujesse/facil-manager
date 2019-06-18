@@ -40,9 +40,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #  - images/a_dot_burr.jpeg
-  #  - images/a_dot_ham.jpeg
+  assets:
+    - assets/img/IMG-01.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -56,18 +55,22 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: FiraLight
-      fonts:
-        - asset: assets/fonts/FiraCode-Light.ttf
-          weight: 300
-    - family: FiraRegular
-      fonts:
-        - asset: assets/fonts/FiraCode-Regular.ttf
-          weight: 500
     - family: Octin
       fonts:
         - asset: assets/fonts/octin_stencil_rg.otf
           weight: 800
+    - family: Walkway
+      fonts:
+        - asset: assets/fonts/Walkway_SemiBold.ttf
+    - family: WalkwayItalic
+      fonts:
+        - asset: assets/fonts/Walkway_Oblique.ttf
+    - family: WalkwayBold
+      fonts:
+        - asset: assets/fonts/Walkway_Bold.ttf
+    - family: WalkwayBoldItalic
+      fonts:
+        - asset: assets/fonts/Walkway_Oblique_Bold.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
