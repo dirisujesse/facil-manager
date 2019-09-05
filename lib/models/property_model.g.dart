@@ -17,6 +17,7 @@ PropertyModel _$PropertyModelFromJson(Map<String, dynamic> json) {
       lat: (json['lat'] as num)?.toDouble(),
       lng: (json['lng'] as num)?.toDouble(),
       apartments: json['apartments'] as int,
+      picture: json['picture'] as String,
       tenants: (json['tenants'] as List)
           ?.map((e) => e == null
               ? null
@@ -31,6 +32,7 @@ Map<String, dynamic> _$PropertyModelToJson(PropertyModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'picture': instance.picture,
       'address': instance.address,
       'city': instance.city,
       'state': instance.state,

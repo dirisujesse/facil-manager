@@ -1,94 +1,147 @@
 import 'package:flutter/material.dart';
 import '../styles/colors.dart';
 
+int _activePage = 0;
+
+// class OnboardingPage extends StatefulWidget {
+//  @override
+//   State<StatefulWidget> createState() {
+//     return _OnboardingPageState();
+//   }
+// }
+
 class OnboardingPage extends StatelessWidget {
-  final ValueNotifier _activeSlide = ValueNotifier(0);
-  OnboardingPage();
+  final PageController _ctrl = PageController(initialPage: 0);
+  final ValueNotifier _activeSlide = ValueNotifier(_activePage);
+
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   _ctrl = PageController(initialPage: 0);
+  //   _activeSlide = ValueNotifier(_activePage);
+  // }
+
+  // @override
+  // void dispose() {
+  //   super.dispose();
+  //   _ctrl.dispose();
+  //   _activeSlide.dispose();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).accentColor,
       body: Stack(
         fit: StackFit.expand,
         alignment: Alignment.center,
         children: <Widget>[
           PageView(
-            onPageChanged: (val) => _activeSlide.value = val,
+            controller: _ctrl,
+            onPageChanged: (val) {
+              _activePage = val;
+              _activeSlide.value = val;
+            },
             children: <Widget>[
-              SafeArea(
-                child: Container(
-                  margin: EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.white,
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/img/properties.png'),
+                    alignment: Alignment.center,
+                    fit: BoxFit.fitWidth,
                   ),
-                  child: Center(
-                    child: Text(
-                      "Slide 1",
-                      style: Theme.of(context).textTheme.display1,
-                    ),
+                ),
+                child: Center(
+                  child: Text(
+                    "",
+                    style: Theme.of(context).textTheme.display1,
                   ),
                 ),
               ),
-              SafeArea(
-                child: Container(
-                  margin: EdgeInsets.all(20.0),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.white,
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/img/world_map.png'),
+                    alignment: Alignment.center,
+                    fit: BoxFit.fitWidth,
                   ),
-                  child: Center(
-                    child: Text(
-                      "Slide 2",
-                      style: Theme.of(context).textTheme.display1,
-                    ),
+                ),
+                child: Center(
+                  child: Text(
+                    "",
+                    style: Theme.of(context).textTheme.display1,
                   ),
                 ),
               ),
-              SafeArea(
-                child: Container(
-                  margin: EdgeInsets.all(20.0),
-                  padding: EdgeInsets.only(
-                    left: 20.0,
-                    right: 20.0,
-                    bottom: 50.0,
+              Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/img/goals.png'),
+                    alignment: Alignment.center,
+                    fit: BoxFit.fitWidth,
                   ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    color: Colors.white,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: <Widget>[
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            "Slide 3",
-                            style: Theme.of(context).textTheme.display1,
-                          ),
+                ),
+                padding: EdgeInsets.only(
+                  bottom: 80.0,
+                  left: 14.0,
+                  right: 14.0,
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          "",
+                          style: Theme.of(context).textTheme.display1,
                         ),
                       ),
-                      RaisedButton(
-                        onPressed: () => Navigator.of(context).pushReplacementNamed("auth"),
-                        child: Text("Get Started"),
-                      )
-                    ],
-                  ),
+                    ),
+                    RaisedButton(
+                      onPressed: () =>
+                          Navigator.of(context).pushReplacementNamed("auth"),
+                      child: Text("Get Started"),
+                    )
+                  ],
                 ),
               ),
             ],
           ),
           Positioned(
-            bottom: 30.0,
-            child: ValueListenableBuilder(
-              valueListenable: _activeSlide,
-              builder: (context, val, child) {
-                return DotIndicator(
-                  itemCount: 3,
-                  activeIndex: val,
-                );
-              },
+            width: MediaQuery.of(context).size.width * 0.9,
+            bottom: 20.0,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                FlatButton(
+                  child: Text(
+                    "NEXT",
+                    style: Theme.of(context).textTheme.body1,
+                  ),
+                  onPressed: () => _ctrl.nextPage(
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.easeIn,
+                      ),
+                ),
+                ValueListenableBuilder(
+                  valueListenable: _activeSlide,
+                  builder: (context, val, child) {
+                    return DotIndicator(
+                      itemCount: 3,
+                      activeIndex: val,
+                    );
+                  },
+                ),
+                FlatButton(
+                  child: Text(
+                    "SKIP",
+                    style: Theme.of(context).textTheme.body1,
+                  ),
+                  onPressed: () => _ctrl.animateToPage(2,
+                      duration: Duration(milliseconds: 500),
+                      curve: Curves.slowMiddle),
+                ),
+              ],
             ),
           ),
         ],

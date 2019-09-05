@@ -10,6 +10,7 @@ class PropertyModel {
   static int itemCount = 0;
   String id;
   final String name;
+  final String picture;
   final String address;
   final String city;
   final String state;
@@ -30,8 +31,9 @@ class PropertyModel {
     @required this.lat,
     @required this.lng,
     @required this.apartments,
+    @required this.picture,
     this.tenants = const [],
-    @required this.agent,
+    this.agent,
   })  : assert(name != null),
         assert(address != null),
         assert(city != null),

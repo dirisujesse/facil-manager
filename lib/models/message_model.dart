@@ -6,7 +6,7 @@ part 'message_model.g.dart';
 
 @JsonSerializable()
 class MessageModel {
-  static int itemCount;
+  static int itemCount = 0;
   String id;
   final bool isRead;
   final DateTime createdAt;

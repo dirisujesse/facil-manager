@@ -22,8 +22,9 @@ dependencies:
   charts_flutter: ^0.6.0
   cupertino_icons: ^0.1.2
   dio: ^2.1.7
-  flushbar: ^1.7.0
   intl: ^0.15.6
+  image_picker: ^0.5.0+9
+  overlay_support: ^1.0.1
   path_provider: ^0.4.1
   provider: ^2.0.0+1
   sembast: ^1.15.4+1
@@ -41,7 +42,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/img/IMG-01.jpg
+    - assets/img/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
@@ -59,18 +60,11 @@ flutter:
       fonts:
         - asset: assets/fonts/octin_stencil_rg.otf
           weight: 800
-    - family: Walkway
+    - family: Opensans
       fonts:
-        - asset: assets/fonts/Walkway_SemiBold.ttf
-    - family: WalkwayItalic
-      fonts:
-        - asset: assets/fonts/Walkway_Oblique.ttf
-    - family: WalkwayBold
-      fonts:
-        - asset: assets/fonts/Walkway_Bold.ttf
-    - family: WalkwayBoldItalic
-      fonts:
-        - asset: assets/fonts/Walkway_Oblique_Bold.ttf
+        - asset: assets/fonts/OpenSans-Regular.ttf
+        - asset: assets/fonts/OpenSans-Bold.ttf
+        - asset: assets/fonts/OpenSans-Italic.ttf
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

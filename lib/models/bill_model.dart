@@ -6,7 +6,7 @@ part 'bill_model.g.dart';
 
 @JsonSerializable()
 class BillModel {
-  static int itemCount;
+  static int itemCount = 0;
   String id;
   final bool isOutstanding;
   final bool isDue;

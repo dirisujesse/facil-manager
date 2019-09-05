@@ -125,7 +125,7 @@ class RegistrationPage extends StatelessWidget {
                   children: <Widget>[
                     TextField(
                       decoration: InputDecoration(
-                        labelText: 'Email',
+                        hintText: 'Email',
                       ),
                       keyboardType: TextInputType.emailAddress,
                       autocorrect: false,
@@ -138,7 +138,7 @@ class RegistrationPage extends StatelessWidget {
                       builder: (context, val, child) {
                         return TextField(
                           decoration: InputDecoration(
-                            labelText: 'Password',
+                            hintText: 'Password',
                             suffixIcon: GestureDetector(
                               child: Icon(
                                 _obscurePass.value
@@ -163,7 +163,7 @@ class RegistrationPage extends StatelessWidget {
                       builder: (context, val, child) {
                         return TextField(
                           decoration: InputDecoration(
-                            labelText: 'Password Confirm',
+                            hintText: 'Password Confirm',
                             suffixIcon: GestureDetector(
                               child: Icon(
                                 _obscurePass.value
@@ -185,7 +185,7 @@ class RegistrationPage extends StatelessWidget {
                     ),
                     TextField(
                       decoration: InputDecoration(
-                        labelText: 'Secret Code',
+                        hintText: 'Secret Code',
                       ),
                       autocorrect: false,
                     ),
@@ -197,7 +197,7 @@ class RegistrationPage extends StatelessWidget {
                       onPressed: () => goHome(),
                     ),
                     SizedBox(
-                      height: 10.0,
+                      height: 30.0,
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(
@@ -209,19 +209,15 @@ class RegistrationPage extends StatelessWidget {
                           Text(
                             "Already have an account?",
                           ),
-                          SizedBox(
-                            width: 5.0,
-                          ),
-                          GestureDetector(
+                          FlatButton(
                             child: Text(
                               "login",
                               style:
                                   Theme.of(context).textTheme.display1.copyWith(
                                         fontSize: 14.0,
-                                        fontWeight: FontWeight.w900,
                                       ),
                             ),
-                            onTap: () =>
+                            onPressed: () =>
                                 Navigator.of(context).pushNamed("login/signin"),
                           ),
                         ],
@@ -242,7 +238,7 @@ class LoginPage extends StatelessWidget {
   final Function presentSnack;
   final Function goHome;
   final ValueNotifier _obscurePass = ValueNotifier(true);
-  final ValueNotifier _accType = ValueNotifier(null);
+  // final ValueNotifier _accType = ValueNotifier(null);
 
   LoginPage(
     this.presentSnack,
@@ -263,36 +259,36 @@ class LoginPage extends StatelessWidget {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  ValueListenableBuilder(
-                    valueListenable: _accType,
-                    builder: (context, val, child) {
-                      return DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          labelStyle:
-                              Theme.of(context).inputDecorationTheme.labelStyle,
-                          enabledBorder: Theme.of(context)
-                              .inputDecorationTheme
-                              .enabledBorder,
-                          focusedBorder: Theme.of(context)
-                              .inputDecorationTheme
-                              .enabledBorder,
-                        ),
-                        hint: Text("Select Account Type"),
-                        value: val,
-                        items: <String>["Facility Manager", "Tenant"]
-                            .map((it) =>
-                                DropdownMenuItem(value: it, child: Text(it)))
-                            .toList(),
-                        onChanged: (valu) => _accType.value = valu,
-                      );
-                    },
-                  ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
+                  // ValueListenableBuilder(
+                  //   valueListenable: _accType,
+                  //   builder: (context, val, child) {
+                  //     return DropdownButtonFormField(
+                  //       decoration: InputDecoration(
+                  //         labelStyle:
+                  //             Theme.of(context).inputDecorationTheme.labelStyle,
+                  //         enabledBorder: Theme.of(context)
+                  //             .inputDecorationTheme
+                  //             .enabledBorder,
+                  //         focusedBorder: Theme.of(context)
+                  //             .inputDecorationTheme
+                  //             .enabledBorder,
+                  //       ),
+                  //       hint: Text("Select Account Type"),
+                  //       value: val,
+                  //       items: <String>["Facility Manager", "Tenant"]
+                  //           .map((it) =>
+                  //               DropdownMenuItem(value: it, child: Text(it)))
+                  //           .toList(),
+                  //       onChanged: (valu) => _accType.value = valu,
+                  //     );
+                  //   },
+                  // ),
+                  // SizedBox(
+                  //   height: 10.0,
+                  // ),
                   TextField(
                     decoration: InputDecoration(
-                      labelText: 'Email',
+                      hintText: 'Email',
                     ),
                     autocorrect: false,
                     keyboardType: TextInputType.emailAddress,
@@ -305,7 +301,7 @@ class LoginPage extends StatelessWidget {
                     builder: (context, val, child) {
                       return TextField(
                         decoration: InputDecoration(
-                          labelText: 'Password',
+                          hintText: 'Password',
                           suffixIcon: GestureDetector(
                             child: Icon(
                               _obscurePass.value
@@ -330,48 +326,50 @@ class LoginPage extends StatelessWidget {
                     onPressed: () => goHome(),
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: 30.0,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 10.0,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(
-                          "New here?",
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              "New here?",
+                            ),
+                            FlatButton(
+                              child: Text(
+                                "register",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .display1
+                                    .copyWith(
+                                      fontSize: 14.0,
+                                    ),
+                              ),
+                              onPressed: () => Navigator.of(context)
+                                  .pushNamed("login/signup"),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: 5.0,
-                        ),
-                        GestureDetector(
+                        FlatButton(
                           child: Text(
-                            "register",
+                            "Retrieve Password",
+                            textAlign: TextAlign.right,
                             style:
                                 Theme.of(context).textTheme.display1.copyWith(
                                       fontSize: 14.0,
-                                      fontWeight: FontWeight.w900,
                                     ),
                           ),
-                          onTap: () =>
-                              Navigator.of(context).pushNamed("login/signup"),
+                          onPressed: () => Navigator.of(context)
+                              .pushNamed("login/retrievepass"),
                         ),
-                        Expanded(
-                          child: GestureDetector(
-                            child: Text(
-                              "Forgot Password?",
-                              textAlign: TextAlign.right,
-                              style:
-                                  Theme.of(context).textTheme.display1.copyWith(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                            ),
-                            onTap: () => Navigator.of(context)
-                                .pushNamed("login/retrievepass"),
-                          ),
-                        )
                       ],
                     ),
                   ),
@@ -410,7 +408,7 @@ class ForgotPasswordPage extends StatelessWidget {
                 children: <Widget>[
                   TextField(
                     decoration: InputDecoration(
-                      labelText: 'Email',
+                      hintText: 'Email',
                     ),
                     autocorrect: false,
                     keyboardType: TextInputType.emailAddress,
@@ -423,48 +421,50 @@ class ForgotPasswordPage extends StatelessWidget {
                     onPressed: () => goHome(),
                   ),
                   SizedBox(
-                    height: 10.0,
+                    height: 30.0,
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(
                       horizontal: 10.0,
                     ),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
-                        Text(
-                          "New here?",
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            Text(
+                              "New here?",
+                            ),
+                            FlatButton(
+                              child: Text(
+                                "register",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .display1
+                                    .copyWith(
+                                      fontSize: 14.0,
+                                    ),
+                              ),
+                              onPressed: () => Navigator.of(context)
+                                  .pushNamed("login/signup"),
+                            ),
+                          ],
                         ),
-                        SizedBox(
-                          width: 5.0,
-                        ),
-                        GestureDetector(
+                        FlatButton(
                           child: Text(
-                            "register",
+                            "Back to login",
+                            textAlign: TextAlign.right,
                             style:
                                 Theme.of(context).textTheme.display1.copyWith(
                                       fontSize: 14.0,
-                                      fontWeight: FontWeight.w900,
                                     ),
                           ),
-                          onTap: () =>
-                              Navigator.of(context).pushNamed("login/signup"),
+                          onPressed: () =>
+                              Navigator.of(context).pushNamed("login/signin"),
                         ),
-                        Expanded(
-                          child: GestureDetector(
-                            child: Text(
-                              "Back to login",
-                              textAlign: TextAlign.right,
-                              style:
-                                  Theme.of(context).textTheme.display1.copyWith(
-                                        fontSize: 14.0,
-                                        fontWeight: FontWeight.w900,
-                                      ),
-                            ),
-                            onTap: () =>
-                                Navigator.of(context).pushNamed("login/signin"),
-                          ),
-                        )
                       ],
                     ),
                   ),
